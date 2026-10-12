@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Explora el ecosistema comercial de Huajuapan de León y detecta oportunidades para tu próximo negocio.">
+  <title>Pulso Huajuapan — Mapa de negocios y oportunidades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Pulso Huajuapan, inicio"><span class="brand-mark">PH</span><span>Pulso<br>Huajuapan</span></a>
+    <nav aria-label="Navegación principal"><a href="#directorio">Directorio</a><a href="#oportunidades">Oportunidades</a><a href="#metodo">Metodología</a></nav>
+    <button class="button button-small" data-open-modal>Registrar negocio</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Inteligencia comercial local · Heroica Ciudad de Huajuapan de León</p>
+        <h1>Entiende la ciudad.<br><em>Encuentra tu oportunidad.</em></h1>
+        <p class="hero-lede">Un directorio vivo para explorar el comercio local, comparar zonas y convertir señales de demanda en mejores decisiones de negocio.</p>
+        <div class="hero-actions">
+          <a class="button" href="#directorio">Explorar negocios <span>↘</span></a>
+          <a class="text-link" href="#oportunidades">Ver oportunidades →</a>
+        </div>
+        <p class="source-line"><span></span> Estructura preparada para datos oficiales DENUE y aportaciones verificadas.</p>
+      </div>
+      <div class="hero-visual" aria-label="Visualización abstracta del mapa comercial de Huajuapan">
+        <div class="map-grid"></div>
+        <div class="map-label label-centro">Centro</div><div class="map-label label-reforma">Reforma</div><div class="map-label label-expo">Zona Expo</div>
+        <span class="pin pin-1"></span><span class="pin pin-2"></span><span class="pin pin-3"></span><span class="pin pin-4"></span><span class="pin pin-5"></span>
+        <div class="map-card"><span>Actividad destacada</span><strong>Alimentos y bebidas</strong><small>Señal ilustrativa del prototipo</small></div>
+      </div>
+    </section>
+
+    <section class="signal-strip" aria-label="Resumen del prototipo">
+      <div><strong id="metric-businesses">8</strong><span>registros demo</span></div>
+      <div><strong id="metric-categories">6</strong><span>categorías</span></div>
+      <div><strong>DENUE</strong><span>fuente oficial prevista</span></div>
+      <p>Datos demostrativos para validar la experiencia. No representan un censo comercial completo.</p>
+    </section>
+
+    <section class="directory section" id="directorio">
+      <div class="section-heading">
+        <div><p class="eyebrow">Directorio exploratorio</p><h2>¿Qué mueve a Huajuapan?</h2></div>
+        <p>Busca por nombre, giro o colonia. Cada ficha distingue información oficial, aportada y aún pendiente de verificar.</p>
+      </div>
+      <div class="search-row">
+        <label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Buscar negocio, giro o zona…" aria-label="Buscar negocios"></label>
+        <select id="category" aria-label="Filtrar por categoría"><option value="all">Todas las categorías</option></select>
+      </div>
+      <div class="directory-layout">
+        <aside class="filters" aria-label="Filtros rápidos">
+          <p>Filtrar por</p>
+          <button class="filter active" data-filter="all">Todos <span id="count-all">0</span></button>
+          <button class="filter" data-filter="Alimentos">Alimentos <span></span></button>
+          <button class="filter" data-filter="Comercio">Comercio <span></span></button>
+          <button class="filter" data-filter="Servicios">Servicios <span></span></button>
+          <button class="filter" data-filter="Salud">Salud <span></span></button>
+          <button class="filter" data-filter="Educación">Educación <span></span></button>
+          <button class="filter" data-filter="Hospedaje">Hospedaje <span></span></button>
+          <div class="verify-note"><span>✓</span><p><strong>Dato responsable</strong>El responsable solo se muestra cuando es información empresarial pública o fue aportada con consentimiento.</p></div>
+        </aside>
+        <div><div class="results-head"><p><strong id="result-count">0</strong> negocios encontrados</p><button id="toggle-view" class="icon-button" aria-label="Cambiar vista">▦</button></div><div id="business-grid" class="business-grid"></div><p id="empty" class="empty" hidden>No encontramos coincidencias. Prueba con otra búsqueda.</p></div>
+      </div>
+    </section>
+
+    <section class="opportunities section" id="oportunidades">
+      <div class="opportunity-intro"><p class="eyebrow light">Radar de oportunidad</p><h2>Las preguntas correctas antes de invertir.</h2><p>El valor no está en copiar otro negocio, sino en cruzar oferta, hábitos y problemas no resueltos.</p></div>
+      <div class="opportunity-panel">
+        <div class="panel-top"><div><small>LECTURA DEMOSTRATIVA</small><h3>Señales por explorar</h3></div><span class="live-dot">Modelo inicial</span></div>
+        <div class="signal"><div class="signal-number">01</div><div><strong>Conveniencia por zona</strong><p>¿Qué colonias tienen población activa pero poca oferta cercana?</p></div><span class="signal-tag high">Investigar</span></div>
+        <div class="signal"><div class="signal-number">02</div><div><strong>Horarios desatendidos</strong><p>Compara demanda por franja horaria con horarios reales de comercios.</p></div><span class="signal-tag">Medir</span></div>
+        <div class="signal"><div class="signal-number">03</div><div><strong>Compra recurrente</strong><p>Identifica necesidades frecuentes con baja satisfacción, no solo categorías populares.</p></div><span class="signal-tag">Validar</span></div>
+        <div class="panel-foot"><p>Próximo paso recomendado</p><strong>Encuestar a 30–50 clientes potenciales y contrastar los hallazgos con el DENUE.</strong></div>
+      </div>
+    </section>
+
+    <section class="method section" id="metodo">
+      <div><p class="eyebrow">Base confiable</p><h2>De directorio a decisión.</h2></div>
+      <ol><li><span>01</span><div><strong>Observar</strong><p>Importar establecimientos y giros desde el DENUE de INEGI.</p></div></li><li><span>02</span><div><strong>Verificar</strong><p>Permitir que cada negocio confirme datos, horarios y responsable público.</p></div></li><li><span>03</span><div><strong>Aprender</strong><p>Recolectar encuestas anónimas y métricas agregadas con consentimiento.</p></div></li><li><span>04</span><div><strong>Decidir</strong><p>Comparar saturación, demanda y viabilidad antes de invertir.</p></div></li></ol>
+      <div class="method-callout"><p>La identidad de propietarios no forma parte del DENUE. “Razón social” no equivale necesariamente a la persona que dirige el negocio.</p><a href="https://www.inegi.org.mx/servicios/api_denue.html" target="_blank" rel="noreferrer">Conocer la fuente oficial ↗</a></div>
+    </section>
+  </main>
+
+  <footer><div class="brand"><span class="brand-mark">PH</span><span>Pulso<br>Huajuapan</span></div><p>Un proyecto para fortalecer decisiones comerciales en la Mixteca.</p><span>Prototipo · 2026</span></footer>
+
+  <dialog id="business-modal">
+    <button class="modal-close" data-close-modal aria-label="Cerrar">×</button>
+    <p class="eyebrow">Suma información local</p><h2>Registra un negocio</h2><p>La información quedará guardada en este dispositivo durante esta etapa del prototipo.</p>
+    <form id="business-form"><label>Nombre del negocio<input name="name" required></label><label>Giro<select name="category" required><option>Alimentos</option><option>Comercio</option><option>Servicios</option><option>Salud</option><option>Educación</option><option>Hospedaje</option></select></label><label>Colonia o zona<input name="zone" required></label><label>Responsable público (opcional)<input name="leader" placeholder="Solo con autorización o fuente pública"></label><label class="consent"><input type="checkbox" required> Confirmo que puedo compartir esta información empresarial.</label><button class="button" type="submit">Guardar registro</button><p id="form-status" role="status"></p></form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>
