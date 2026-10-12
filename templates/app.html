@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pulso Huajuapan · Captura local</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <header><a class="brand" href="/"><span>PH</span><strong>Pulso Huajuapan<small>Base de datos local</small></strong></a><div class="actions"><label class="import-button">Importar CSV<input id="csv-file" type="file" accept=".csv" hidden></label><a class="quiet-button" href="/api/export">Exportar CSV</a><button class="primary" id="new-business">+ Nuevo negocio</button></div></header>
+  <main>
+    <aside>
+      <div class="intro"><p class="eyebrow">Directorio de campo</p><h1>Negocios de Huajuapan</h1><p id="summary">Cargando registros…</p></div>
+      <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Buscar por nombre, giro o colonia"></label>
+      <div class="chips" id="needs"><button class="active" data-need="all">Todos</button><button data-need="abierto">Abierto ahora</button><button data-need="entrega">Entrega</button><button data-need="economico">Económico</button><button data-need="accesible">Accesible</button><button data-need="familiar">Familiar</button><button data-need="digital">Pago digital</button></div>
+      <div id="results" class="results"></div>
+    </aside>
+    <section class="map-wrap"><div id="map"></div><div class="map-note">Haz clic en el mapa al editar para capturar coordenadas.</div></section>
+  </main>
+
+  <dialog id="editor"><button class="close" type="button" aria-label="Cerrar">×</button><p class="eyebrow">Ficha del establecimiento</p><h2 id="form-title">Nuevo negocio</h2>
+    <form id="business-form"><input type="hidden" name="id">
+      <div class="form-grid"><label class="wide">Nombre<input name="name" required></label><label>Giro o categoría<input name="category" required placeholder="Ej. Alimentos"></label><label>Colonia<input name="neighborhood"></label><label class="wide">Dirección<input name="address"></label><label>Latitud<input name="latitude" type="number" step="any" placeholder="17.8065"></label><label>Longitud<input name="longitude" type="number" step="any" placeholder="-97.7780"></label><label class="wide">Enlace de Google Maps<input name="maps_url" type="url" placeholder="Pega un enlace para intentar obtener coordenadas"></label><label>Teléfono<input name="phone"></label><label>Horario<input name="schedule"></label><label>Rango de precios<select name="price_range"><option value="">Sin dato</option><option>$ Económico</option><option>$$ Moderado</option><option>$$$ Alto</option></select></label><label>Responsable público<input name="responsible"></label><label>Fuente<input name="source" value="Captura propia"></label><label>Fecha de verificación<input name="verified_at" type="date"></label></div>
+      <fieldset><legend>Necesidades que atiende</legend><div class="checks"><label><input type="checkbox" name="needs" value="abierto"> Abierto ahora</label><label><input type="checkbox" name="needs" value="entrega"> Entrega</label><label><input type="checkbox" name="needs" value="economico"> Económico</label><label><input type="checkbox" name="needs" value="accesible"> Accesible</label><label><input type="checkbox" name="needs" value="familiar"> Familiar</label><label><input type="checkbox" name="needs" value="digital"> Pago digital</label></div></fieldset>
+      <label>Notas<textarea name="notes" rows="3"></textarea></label><div class="form-actions"><button type="button" class="danger" id="delete-business" hidden>Eliminar</button><span></span><button type="button" class="quiet-button close-form">Cancelar</button><button class="primary" type="submit">Guardar negocio</button></div><p id="form-message" role="status"></p>
+    </form>
+  </dialog>
+  <div id="toast" role="status"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
