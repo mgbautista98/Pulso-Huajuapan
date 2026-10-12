@@ -1,12 +1,12 @@
 const demoBusinesses = [
-  {name:'Café Nube Mixteca',category:'Alimentos',activity:'Cafetería y alimentos preparados',zone:'Centro',leader:'Pendiente de verificar',icon:'☕'},
-  {name:'Mercado La Estación',category:'Comercio',activity:'Comercio minorista de productos locales',zone:'Centro',leader:'Pendiente de verificar',icon:'◫'},
-  {name:'Taller Ruta 190',category:'Servicios',activity:'Mantenimiento automotriz',zone:'Col. Reforma',leader:'Pendiente de verificar',icon:'⌁'},
-  {name:'Salud Mixteca',category:'Salud',activity:'Consultorio de atención general',zone:'Alta Vista de Juárez',leader:'Pendiente de verificar',icon:'✚'},
-  {name:'Aula Ñuu',category:'Educación',activity:'Capacitación y apoyo escolar',zone:'Centro',leader:'Pendiente de verificar',icon:'✎'},
-  {name:'Posada del Sol',category:'Hospedaje',activity:'Hospedaje de corta estancia',zone:'Santa Rosa',leader:'Pendiente de verificar',icon:'⌂'},
-  {name:'Casa del Barro',category:'Comercio',activity:'Artesanías y productos regionales',zone:'Centro',leader:'Pendiente de verificar',icon:'◇'},
-  {name:'Sabores de la Mixteca',category:'Alimentos',activity:'Cocina regional',zone:'Col. del Valle',leader:'Pendiente de verificar',icon:'◉'}
+  {name:'Café Nube Mixteca',category:'Alimentos',activity:'Cafetería y alimentos preparados',zone:'Centro',leader:'Pendiente de verificar',icon:'☕',lat:17.8077,lng:-97.7788,needs:['open','budget','digital']},
+  {name:'Mercado La Estación',category:'Comercio',activity:'Comercio minorista de productos locales',zone:'Centro',leader:'Pendiente de verificar',icon:'◫',lat:17.8057,lng:-97.7767,needs:['open','budget','family']},
+  {name:'Taller Ruta 190',category:'Servicios',activity:'Mantenimiento automotriz',zone:'Col. Reforma',leader:'Pendiente de verificar',icon:'⌁',lat:17.8121,lng:-97.7692,needs:['open','digital']},
+  {name:'Salud Mixteca',category:'Salud',activity:'Consultorio de atención general',zone:'Alta Vista de Juárez',leader:'Pendiente de verificar',icon:'✚',lat:17.8158,lng:-97.7811,needs:['accessible','digital']},
+  {name:'Aula Ñuu',category:'Educación',activity:'Capacitación y apoyo escolar',zone:'Centro',leader:'Pendiente de verificar',icon:'✎',lat:17.8088,lng:-97.7748,needs:['budget','family']},
+  {name:'Posada del Sol',category:'Hospedaje',activity:'Hospedaje de corta estancia',zone:'Santa Rosa',leader:'Pendiente de verificar',icon:'⌂',lat:17.8007,lng:-97.7862,needs:['open','accessible','digital']},
+  {name:'Casa del Barro',category:'Comercio',activity:'Artesanías y productos regionales',zone:'Centro',leader:'Pendiente de verificar',icon:'◇',lat:17.8064,lng:-97.7817,needs:['budget','digital']},
+  {name:'Sabores de la Mixteca',category:'Alimentos',activity:'Cocina regional',zone:'Col. del Valle',leader:'Pendiente de verificar',icon:'◉',lat:17.8018,lng:-97.7735,needs:['delivery','budget','family']}
 ];
 
 const stored = JSON.parse(localStorage.getItem('pulsoBusinesses') || '[]');
@@ -50,3 +50,19 @@ document.querySelector('#business-form').addEventListener('submit',event=>{
   document.querySelector('#form-status').textContent='Registro guardado en este dispositivo.'; event.currentTarget.reset(); render(); setTimeout(()=>modal.close(),1100);
 });
 renderCategoryOptions(); render();
+
+let mapNeed='all', mapMarkers=[];
+const cityMap=window.L ? L.map('city-map',{zoomControl:false}).setView([17.8065,-97.7780],14) : null;
+if(cityMap){L.control.zoom({position:'bottomright'}).addTo(cityMap);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(cityMap)}
+function mapIcon(symbol){return L.divIcon({className:'custom-map-marker',html:`<span>${escapeHTML(symbol)}</span>`,iconSize:[28,28],iconAnchor:[14,28]})}
+function renderMap(){
+  if(!cityMap)return; mapMarkers.forEach(marker=>marker.remove()); mapMarkers=[];
+  const q=document.querySelector('#map-search').value.trim().toLocaleLowerCase('es');
+  const items=businesses.filter(b=>b.lat&&b.lng&&(mapNeed==='all'||(b.needs||[]).includes(mapNeed))&&[b.name,b.activity,b.zone,b.category].join(' ').toLocaleLowerCase('es').includes(q));
+  const list=document.querySelector('#map-results');
+  list.innerHTML=items.map((b,i)=>`<button class="map-result" data-map-index="${i}"><span class="map-result-icon">${escapeHTML(b.icon)}</span><span><strong>${escapeHTML(b.name)}</strong><small>${escapeHTML(b.activity)} · ${escapeHTML(b.zone)}</small></span><span>→</span></button>`).join('');
+  items.forEach((b,i)=>{const marker=L.marker([b.lat,b.lng],{icon:mapIcon(b.icon)}).addTo(cityMap).bindPopup(`<strong>${escapeHTML(b.name)}</strong><small>${escapeHTML(b.activity)} · ${escapeHTML(b.zone)}</small>`);mapMarkers.push(marker);const button=list.querySelector(`[data-map-index="${i}"]`);button.addEventListener('click',()=>{list.querySelectorAll('.selected').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');cityMap.flyTo([b.lat,b.lng],16);marker.openPopup()})});
+  document.querySelector('#map-result-count').textContent=`${items.length} ${items.length===1?'lugar':'lugares'}`;
+}
+document.querySelectorAll('.need-chip').forEach(button=>button.addEventListener('click',()=>{document.querySelector('.need-chip.active').classList.remove('active');button.classList.add('active');mapNeed=button.dataset.need;renderMap()}));
+document.querySelector('#map-search').addEventListener('input',renderMap); renderMap();
