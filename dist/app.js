@@ -6,7 +6,15 @@ const demoBusinesses = [
   {name:'Aula Ñuu',category:'Educación',activity:'Capacitación y apoyo escolar',zone:'Centro',leader:'Pendiente de verificar',icon:'✎',lat:17.8088,lng:-97.7748,needs:['budget','family']},
   {name:'Posada del Sol',category:'Hospedaje',activity:'Hospedaje de corta estancia',zone:'Santa Rosa',leader:'Pendiente de verificar',icon:'⌂',lat:17.8007,lng:-97.7862,needs:['open','accessible','digital']},
   {name:'Casa del Barro',category:'Comercio',activity:'Artesanías y productos regionales',zone:'Centro',leader:'Pendiente de verificar',icon:'◇',lat:17.8064,lng:-97.7817,needs:['budget','digital']},
-  {name:'Sabores de la Mixteca',category:'Alimentos',activity:'Cocina regional',zone:'Col. del Valle',leader:'Pendiente de verificar',icon:'◉',lat:17.8018,lng:-97.7735,needs:['delivery','budget','family']}
+  {name:'Sabores de la Mixteca',category:'Alimentos',activity:'Cocina regional',zone:'Col. del Valle',leader:'Pendiente de verificar',icon:'◉',lat:17.8018,lng:-97.7735,needs:['delivery','budget','family']},
+  {name:'La Carreta Restaurante',category:'Alimentos',activity:'Cocina regional de la Mixteca',zone:'Huajuapan · ubicación por verificar',leader:'Pendiente de verificar',icon:'🍽️',needs:['budget','family']},
+  {name:'Café y Letras Huajuapan',category:'Alimentos',activity:'Desayunos, comidas, cenas, bebidas y postres',zone:'Huajuapan · ubicación por verificar',leader:'Pendiente de verificar',icon:'☕',needs:['family','digital']},
+  {name:'Las Palmas',category:'Alimentos',activity:'Desayuno buffet, carnes, aves, mariscos y postres',zone:'Huajuapan · ubicación por verificar',leader:'Pendiente de verificar',icon:'🍴',needs:['family']},
+  {name:'Mariscos Victor’s',category:'Alimentos',activity:'Restaurante de mariscos',zone:'Huajuapan · ubicación por verificar',leader:'Pendiente de verificar',icon:'🐟',needs:['family']},
+  {name:'El Alebrije',category:'Alimentos',activity:'Tlayudas y cocina oaxaqueña',zone:'Huajuapan · ubicación por verificar',leader:'Pendiente de verificar',icon:'🌮',needs:['budget','family']},
+  {name:'Super Plus',category:'Comercio',activity:'Tienda de conveniencia',zone:'Huajuapan · sucursal por verificar',leader:'Pendiente de verificar',icon:'🛒',needs:['open','budget']},
+  {name:'Tiendas Neto',category:'Comercio',activity:'Tienda de abarrotes y productos de consumo diario',zone:'Huajuapan · sucursal por verificar',leader:'Pendiente de verificar',icon:'🛒',needs:['budget']},
+  {name:'Tiendas 3B',category:'Comercio',activity:'Tienda de autoservicio y productos de consumo diario',zone:'Huajuapan · sucursal por verificar',leader:'Pendiente de verificar',icon:'🛒',needs:['budget']}
 ];
 
 const stored = JSON.parse(localStorage.getItem('pulsoBusinesses') || '[]');
